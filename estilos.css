@@ -1,0 +1,11 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;   /* Utiliza Flexbox para alinear los elementos de la lista en una fila */
+    flex-direction: column; /* Alinea los hijos (cabecera, navegación, etc.) verticalmente */
+    min-height: 100vh;
+}
+
+main{
+    flex: 1;
+}

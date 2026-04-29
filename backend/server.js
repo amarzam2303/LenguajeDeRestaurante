@@ -25,6 +25,17 @@ const pool_mysql = mysql.createPool({
     queueLimit: 0 // Define el límite de peticiones en espera. El valor 0 define una cola infinita
 });
 
+server.get("/postres", (req, res) => {
+    const sql = "SELECT * FROM Postre";
+
+    pool_mysql.query(sql, (error, resultados) => {
+        if (error) {
+            return res.status(500).json({ error });
+        }
+        res.json(resultados);
+    });
+});
+
 function iniciarServidor() {
    // Solo arrancamos el servidor cuando la BD está conectada
    pool_mysql.getConnection((error, connection) => {
@@ -72,7 +83,7 @@ server.post("/postre", (req, res) => {
 
     const sql = `
         INSERT INTO Postre (nombre, pais_origen, precio, con_o_sin_azucar)
-        VALUES (?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?)
     `;
 
     pool_mysql.query(
@@ -95,7 +106,7 @@ server.post("/postre", (req, res) => {
 server.put("/postre/:nombre", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const nombre = req.params.nombre;
-    const { nombre, pais_origen, precio, con_o_sin_azucar } = req.body;
+    const { pais_origen, precio, con_o_sin_azucar } = req.body;
 
     const sql = `
         UPDATE Postre
@@ -105,7 +116,7 @@ server.put("/postre/:nombre", (req, res) => {
 
     pool_mysql.query(
         sql,
-        [nombre, pais_origen, precio, con_o_sin_azucar],
+        [ pais_origen, precio, con_o_sin_azucar, nombre ],
         (error, resultado) => {
             if (error) {
                 console.error("Error en UPDATE:", error);

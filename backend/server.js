@@ -43,8 +43,9 @@ function iniciarServidor() {
 
 iniciarServidor();
 
-server.get("/usuarios", (req, res) => {
-    const ciudad = req.query.ciudad;
+/* BUSCADOR 
+server.get("/postre", (req, res) => {
+    const precio = req.query.ciudad;
     let valores = [];
     let sql = "SELECT * FROM usuario";
 
@@ -63,3 +64,71 @@ server.get("/usuarios", (req, res) => {
         res.json(resultados);
     });
 }); 
+*/
+
+server.post("/postre", (req, res) => {
+    // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
+    const { nombre, pais_origen, precio, con_o_sin_azucar } = req.body;
+
+    const sql = `
+        INSERT INTO Postre (nombre, pais_origen, precio, con_o_sin_azucar)
+        VALUES (?, ?, ?, ?, ?)
+    `;
+
+    pool_mysql.query(
+        sql,
+        [nombre, pais_origen, precio, con_o_sin_azucar],
+        (error, resultado) => {
+            if (error) {
+                console.error("Error en INSERT:", error);
+                return res.status(500).json({ error });
+            }
+
+            res.json({
+                mensaje: "Postre insertado correctamente",
+                datos: { nombre, pais_origen, precio, con_o_sin_azucar }
+            });
+        }
+    );
+});
+
+server.put("/postre/:nombre", (req, res) => {
+    // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
+    const nombre = req.params.nombre;
+    const { nombre, pais_origen, precio, con_o_sin_azucar } = req.body;
+
+    const sql = `
+        UPDATE Postre
+        SET pais_origen = ?, precio = ?, con_o_sin_azucar = ?
+        WHERE nombre = ?
+    `;
+
+    pool_mysql.query(
+        sql,
+        [nombre, pais_origen, precio, con_o_sin_azucar],
+        (error, resultado) => {
+            if (error) {
+                console.error("Error en UPDATE:", error);
+                return res.status(500).json({ error });
+            }
+
+            res.json({ mensaje: "Postre actualizado" });
+        }
+    );
+});
+
+server.delete("/postre/:nombre", (req, res) => {
+    // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
+    const nombre = req.params.nombre;
+
+    const sql = "DELETE FROM Postre WHERE nombre = ?";
+
+    pool_mysql.query(sql, [nombre], (error) => {
+        if (error) {
+            console.error("Error en DELETE:", error);
+            return res.status(500).json({ error });
+        }
+
+        res.json({ mensaje: "Postre eliminado" });
+    });
+});

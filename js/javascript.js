@@ -18,13 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
             mensajesalidapostre.innerHTML = "<p>No se encontraron postres.</p>";
         } else {
             // Recorro la lista de postres y creo un div para cada uno
-            postres.forEach(postres => {
+            postres.forEach(postre => {
                 let div = document.createElement("div");
                 div.classList.add("grid-item");
-                div.innerHTML = `<p><strong><u>Nombre:</u></strong> <span>${postres.nombre}</span></p>
-                    <p><strong><u>País de origen:</u></strong> <span>${postres.pais_origen}</span></p>
-                    <p><strong><u>Precio:</u></strong> <span>${postres.precio}</span></p>
-                    <p><strong><u>Con o sin azúcar:</u></strong> <span>${postres.con_o_sin_azucar}</span></p>`;
+                div.innerHTML = `
+                    <p><strong><u>Nombre:</u></strong> <span>${postre.nombre}</span></p>
+                    <p><strong><u>País de origen:</u></strong> <span>${postre.pais_origen}</span></p>
+                    <p><strong><u>Precio:</u></strong> <span>${postre.precio}</span></p>
+                    <p><strong><u>Con o sin azúcar:</u></strong> <span>${postre.con_o_sin_azucar}</span></p>
+                `;
+
                 mensajesalidapostre.appendChild(div); // Agrego el div al contenedor de salida
             });
         }
@@ -83,13 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify(postre)
         })
-        then(respuesta_servidor => {
+        .then(respuesta_servidor => {
         if (!respuesta_servidor.ok) {
             throw new Error("Error al insertar el postre.");
         }
         return respuesta_servidor.json();
         })
-        then(datos => {
+        .then(datos => {
             console.log(datos);
             alert(datos.mensaje);
         })
@@ -104,12 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
         
-        const ENDPOINT_SERVER_ELIMINAR_POSTRE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_POSTRE +
-    `/${postre.nombre}`, ENDPOINT_SERVER_PUERTO);
+        const ENDPOINT_SERVER_ELIMINAR_POSTRE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_POSTRE + `/${encodeURIComponent(postre.nombre)}`,
+        ENDPOINT_SERVER_PUERTO);
         
         //console.log(ENDPOINT_SERVER_ELIMINAR_POSTRES.href);
         
-        fetch(ENDPOINT_SERVER_ELIMINAR_POSTRES, {
+        fetch(ENDPOINT_SERVER_ELIMINAR_POSTRE, {
             method: "DELETE"
         })
             .then(respuesta_servidor => {
@@ -134,8 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
         
-            const ENDPOINT_SERVER_ELIMINAR_POSTRE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_POSTRE +
-    `/${postre.nombre}`, ENDPOINT_SERVER_PUERTO);
+        const ENDPOINT_SERVER_ELIMINAR_POSTRE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_POSTRE + `/${encodeURIComponent(postre.nombre)}`,
+         ENDPOINT_SERVER_PUERTO);
         
         //console.log(ENDPOINT_SERVER_ELIMINAR_POSTRE.href);
         
@@ -164,7 +167,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //botones
-    botonmostrarpostre.addEventListener("click", () => mostrarPostre());
+    botonmostrarpostre.addEventListener("click", () => {
+    fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_POSTRE}`)
+        .then(res => res.json())
+        .then(data => mostrarPostre(data))
+        .catch(err => console.error(err));
+    });
 
 
     botoninsertarpostre.addEventListener("click", () => {
@@ -172,8 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const postre = {
             nombre: "00Prueba00",
             pais_origen: "00Prueba00",
-            precio: "00Prueba00",
-            con_o_sin_azucar: "00Prueba00"
+            precio: 2.5,
+            con_o_sin_azucar: "Con azúcar"
         };
 
         insertarPostre(postre);
@@ -184,8 +192,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const postre = {
             nombre: "00Prueba00",
             pais_origen: "00Prueba00",
-            precio: "00Prueba00",
-            con_o_sin_azucar: "00Prueba00"
+            precio: 2.5,
+            con_o_sin_azucar: "Con azúcar"
         };
 
         eliminarPostre(postre);
@@ -196,8 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const postre = {
             nombre: "00Prueba00",
             pais_origen: "00Prueba00",
-            precio: "00Prueba00",
-            con_o_sin_azucar: "00Prueba00"
+            precio: 2.5,
+            con_o_sin_azucar: "Con azúcar"
         };
 
         actualizarPostre(postre);

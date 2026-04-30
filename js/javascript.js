@@ -1,4 +1,4 @@
-const PORT = 3000; // Puerto donde correrá nuestro servidor
+const PORT = 3000;                          // Puerto donde correrá nuestro servidor
 const ENDPOINT_SERVER = "http://localhost"; // URL base de nuestro servidor
 
 //--------------------------------------------------------------------------

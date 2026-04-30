@@ -1,11 +1,130 @@
-body{
+/* ── Estilos generales ── */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;   /* Utiliza Flexbox para alinear los elementos de la lista en una fila */
-    flex-direction: column; /* Alinea los hijos (cabecera, navegación, etc.) verticalmente */
+    background: #f5f5f5;
     min-height: 100vh;
 }
 
-main{
+/* ── Cabecera ── */
+header {
+    background: #2c1a0e;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+header p {
+    color: #d4b896;
+    margin: 0;
+}
+
+/* ── Navegación ── */
+nav {
+    background: #2c1a0e;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a {
+    color: #d4b896;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* ── Contenido principal ── */
+main {
+    margin: 30px auto;
+    padding: 0 20px;
     flex: 1;
+}
+
+/* ── Sección del menú ── */
+.seccion {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.seccion h2 {
+    color: #2c1a0e;
+    border-bottom: 2px solid #c8702a;
+    padding-bottom: 8px;
+}
+
+.seccion h3 {
+    color: #c8702a;
+}
+
+/* ── Cada fila de plato/bebida/postre ── */
+.fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ── Botones ── */
+button {
+    background: #c8702a;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+button:hover {
+    background: #2c1a0e;
+}
+
+/* ── Formulario para añadir ── */
+.formulario {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fdf8f3;
+    border: 1px dashed #c8702a;
+    border-radius: 8px;
+}
+
+.formulario input,
+.formulario select {
+    padding: 7px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* ── Menús fuera de servicio ── */
+.fuera-servicio {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    opacity: 0.5;
+}
+
+.fuera-servicio h2 {
+    color: #2c1a0e;
+}
+
+/* ── Pie de página ── */
+footer {
+    background: #2c1a0e;
+    color: #d4b896;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
 }

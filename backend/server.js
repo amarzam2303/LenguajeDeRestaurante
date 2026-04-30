@@ -16,7 +16,7 @@ const PORT = 3000; // Puerto donde correrá nuestro servidor
 // Creamos un pool de conexiones, que hará que las conexiones se hagan bajo demanda según se vayan necesitando
 const pool_mysql = mysql.createPool({
     host: "localhost", // Dirección del servidor
-    port: 3306, // Puerto al que nos conectamos en MySQL
+    port: 3307, // Puerto al que nos conectamos en MySQL
     user: "root", // Usuario al que nos conectamos
     password: "", // Contraseña del usuario al que nos conectamos
     database: "restaurante", // Nombre de la base de datos que nos conectamos

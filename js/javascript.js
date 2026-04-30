@@ -77,8 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    /*
-    function consultarPostres (filtro = "todos", valor = "") {
+    /*  Próximamente en la tercera entrega el consultarlos
+
+    function consultarUsuarios (filtro = "todos", valor = "") {
         // Creo la URL del Endpoint del servidor para consultar usuarios
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;

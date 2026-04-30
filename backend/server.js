@@ -165,7 +165,6 @@ server.post("/bebida", (req, res) => {
         [nombre, pais_origen, precio, temperatura, con_o_sin_hielo],
         (error, resultado) => {
             if (error) {
-                console.error("Error en INSERT:", error);
                 return res.status(500).json({ error });
             }
 
@@ -177,20 +176,20 @@ server.post("/bebida", (req, res) => {
     );
 });
 
-server.put("/bebida/:id", (req, res) => {
+server.put("/bebida/:nombre", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
-    const id = req.params.id;
-    const { nombre, pais_origen, precio, temperatura, con_o_sin_hielo } = req.body;
+    const nombre = req.params.nombre;
+    const { pais_origen, precio, temperatura, con_o_sin_hielo } = req.body;
 
     const sql = `
         UPDATE Bebida
-        SET nombre = ?, pais_origen = ?, precio = ?, temperatura = ?, con_o_sin_hielo = ?
-        WHERE id = ?
+        SET pais_origen = ?, precio = ?, temperatura = ?, con_o_sin_hielo = ?
+        WHERE nombre = ?
     `;
 
     pool_mysql.query(
         sql,
-        [ nombre, pais_origen, precio, temperatura, con_o_sin_hielo ],
+        [pais_origen, precio, temperatura, con_o_sin_hielo, nombre],
         (error, resultado) => {
             if (error) {
                 console.error("Error en UPDATE:", error);
@@ -202,13 +201,13 @@ server.put("/bebida/:id", (req, res) => {
     );
 });
 
-server.delete("/bebida/:id", (req, res) => {
+server.delete("/bebida/:nombre", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
-    const id = req.params.id;
+    const nombre = req.params.nombre;
 
-    const sql = "DELETE FROM Bebida WHERE id = ?";
+    const sql = "DELETE FROM Bebida WHERE nombre = ?";
 
-    pool_mysql.query(sql, [id], (error) => {
+    pool_mysql.query(sql, [nombre], (error) => {
         if (error) {
             console.error("Error en DELETE:", error);
             return res.status(500).json({ error });
@@ -218,6 +217,16 @@ server.delete("/bebida/:id", (req, res) => {
     });
 });
 
+server.get("/bebidas", (req, res) => {
+    const sql = "SELECT * FROM Bebida";
+
+    pool_mysql.query(sql, (error, resultados) => {
+        if (error) {
+            return res.status(500).json({ error });
+        }
+        res.json(resultados);
+    });
+});
 
 //----------------------------------------------------------------------
 // APARTADOS DE LOS PLATOS PRINCIPALES
@@ -286,5 +295,16 @@ server.delete("/plato/:nombre", (req, res) => {
         }
 
         res.json({ mensaje: "Plato principal eliminado" });
+    });
+});
+
+server.get("/platos", (req, res) => {
+    const sql = "SELECT * FROM Plato_principal";
+
+    pool_mysql.query(sql, (error, resultados) => {
+        if (error) {
+            return res.status(500).json({ error });
+        }
+        res.json(resultados);
     });
 });

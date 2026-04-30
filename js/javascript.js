@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Si no hay postres encontrados, muestro un mensaje
         if (platos.length === 0) {
-            mensajesalidaplato.innerHTML = "<p>No se encontraron postres.</p>";
+            mensajesalidaplato.innerHTML = "<p>No se encontraron platos.</p>";
         } else {
             // Recorro la lista de platos principales y creo un div para cada uno
             platos.forEach(plato => {

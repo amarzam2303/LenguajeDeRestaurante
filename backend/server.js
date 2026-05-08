@@ -228,9 +228,9 @@ server.get("/bebidas", (req, res) => {
     });
 });
 
-//----------------------------------------------------------------------
+//----------------------------------------
 // APARTADOS DE LOS PLATOS PRINCIPALES
-//----------------------------------------------------------------------
+//----------------------------------------
 server.post("/plato", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const { nombre, pais_origen, precio } = req.body;

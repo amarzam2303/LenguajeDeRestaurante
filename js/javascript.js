@@ -23,36 +23,36 @@ const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_PLATO = "plato";
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    //----------------------------------------------------------------------
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //CONSTANTES DE LOS POSTRES
-    //----------------------------------------------------------------------
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     const botonmostrarpostre = document.getElementById("botonmostrarpostre"); // Botón para mostrar todos los postres
     const botoninsertarpostre = document.getElementById("botoninsertarpostre"); // Botón para insertar un nuevo postre
     const botoneliminarpostre = document.getElementById("botoneliminarpostre"); // Botón para eliminar un postre
     const botonactualizarpostre = document.getElementById("botonactualizarpostre"); // Botón para actualizar un postre
     const mensajesalidapostre = document.getElementById("mensajesalidapostre"); // Contenedor donde se mostrarán los resultados
 
-    //----------------------------------------------------------------------
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //CONSTANTES DE LAS BEBIDAS
-    //----------------------------------------------------------------------
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     const botonmostrarbebida = document.getElementById("botonmostrarbebida"); // Botón para mostrar todos las bebidas
     const botoninsertarbebida = document.getElementById("botoninsertarbebida"); // Botón para insertar un nuevo bebida
     const botoneliminarbebida = document.getElementById("botoneliminarbebida"); // Botón para eliminar un bebida
     const botonactualizarbebida = document.getElementById("botonactualizarbebida"); // Botón para actualizar un bebida
     const mensajesalidabebida = document.getElementById("mensajesalidabebida"); // Contenedor donde se mostrarán los resultados
 
-    //----------------------------------------------------------------------
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //CONSTANTES DE LOS PLATOS PRINCIPALES
-    //----------------------------------------------------------------------
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     const botonmostrarplato = document.getElementById("botonmostrarplato"); // Botón para mostrar todos las platos
     const botoninsertarplato = document.getElementById("botoninsertarplato"); // Botón para insertar un nuevo plato
     const botoneliminarplato = document.getElementById("botoneliminarplato"); // Botón para eliminar un plato
     const botonactualizarplato = document.getElementById("botonactualizarplato"); // Botón para actualizar un plato
     const mensajesalidaplato = document.getElementById("mensajesalidaplato"); // Contenedor donde se mostrarán los resultados
 
-    //----------------------------------------------------------------------
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //FUNCIONES DE LOS POSTRES
-    //----------------------------------------------------------------------
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     function mostrarPostre (postres) {
         mensajesalidapostre.innerHTML = ""; // Limpio el contenedor de resultados
@@ -257,9 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    //----------------------------------------------------------------------
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //FUNCIONES DE LAS BEBIDAS
-    //----------------------------------------------------------------------
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
     function mostrarBebida (bebidas) {
@@ -432,9 +432,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    //----------------------------------------------------------------------
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //FUNCIONES DE LOS PLATOS PRINCIPALES
-    //----------------------------------------------------------------------
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     function mostrarPlato (platos) {
         mensajesalidaplato.innerHTML = ""; // Limpio el contenedor de resultados

@@ -77,9 +77,9 @@ server.get("/postre", (req, res) => {
 }); 
 */
 
-//----------------------------------------------------------------------
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 // APARTADOS DE LOS POSTRES
-//----------------------------------------------------------------------
+//_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 server.post("/postre", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const { nombre, pais_origen, precio, con_o_sin_azucar } = req.body;
@@ -148,9 +148,9 @@ server.delete("/postre/:nombre", (req, res) => {
 });
 
 
-//----------------------------------------------------------------------
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 // APARTADOS DE LAS BEBIDAS
-//----------------------------------------------------------------------
+//_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 server.post("/bebida", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const { nombre, pais_origen, precio, temperatura, con_o_sin_hielo } = req.body;
@@ -228,9 +228,9 @@ server.get("/bebidas", (req, res) => {
     });
 });
 
-//----------------------------------------
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 // APARTADOS DE LOS PLATOS PRINCIPALES
-//----------------------------------------
+//_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 server.post("/plato", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const { nombre, pais_origen, precio } = req.body;
@@ -300,6 +300,87 @@ server.delete("/plato/:nombre", (req, res) => {
 
 server.get("/platos", (req, res) => {
     const sql = "SELECT * FROM Plato_principal";
+
+    pool_mysql.query(sql, (error, resultados) => {
+        if (error) {
+            return res.status(500).json({ error });
+        }
+        res.json(resultados);
+    });
+});
+
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+// APARTADOS DE LOS INGREDIENTES
+//_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+server.post("/ingrediente", (req, res) => {
+    // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
+    const { nombre, tipo } = req.body;
+
+    const sql = `
+        INSERT INTO Ingrediente (nombre, tipo)
+        VALUES (?, ?)
+    `;
+
+    pool_mysql.query(
+        sql,
+        [nombre, tipo],
+        (error, resultado) => {
+            if (error) {
+                console.error("Error en INSERT:", error);
+                return res.status(500).json({ error });
+            }
+
+            res.json({
+                mensaje: "Ingrediente insertado correctamente",
+                datos: { nombre, tipo }
+            });
+        }
+    );
+});
+
+server.put("/ingrediente/:id", (req, res) => {
+    // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
+    const id = req.params.id;
+    const { nombre, tipo } = req.body;
+
+    const sql = `
+        UPDATE Ingrediente
+        SET nombre = ?, tipo = ?
+        WHERE id = ?
+    `;
+
+    pool_mysql.query(
+        sql,
+        [ nombre, tipo, id ],
+        (error, resultado) => {
+            if (error) {
+                console.error("Error en UPDATE:", error);
+                return res.status(500).json({ error });
+            }
+
+            res.json({ mensaje: "Ingrediente actualizado" });
+        }
+    );
+});
+
+server.delete("/ingrediente/:id", (req, res) => {
+    // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
+    const id = req.params.id;
+
+    const sql = "DELETE FROM Ingrediente WHERE id = ?";
+
+    pool_mysql.query(sql, [id], (error) => {
+        if (error) {
+            console.error("Error en DELETE:", error);
+            return res.status(500).json({ error });
+        }
+
+        res.json({ mensaje: "Ingrediente eliminado" });
+    });
+});
+
+server.get("/ingrediente", (req, res) => {
+    const sql = "SELECT * FROM Ingrediente";
 
     pool_mysql.query(sql, (error, resultados) => {
         if (error) {

@@ -19,7 +19,11 @@ const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_BEBIDA = "bebida";
 const ENDPOINT_OBTENER_PLATO = "platos";
 const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_PLATO = "plato";
 
-
+//--------------------------------------------------------------------------
+//ENDPOINT DE LOS INGREDIENTES
+//----------------------------------------------------------------------
+const ENDPOINT_OBTENER_INGREDIENTE = "ingredientes";
+const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE = "ingrediente";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -49,6 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const botoneliminarplato = document.getElementById("botoneliminarplato"); // Botón para eliminar un plato
     const botonactualizarplato = document.getElementById("botonactualizarplato"); // Botón para actualizar un plato
     const mensajesalidaplato = document.getElementById("mensajesalidaplato"); // Contenedor donde se mostrarán los resultados
+
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    //CONSTANTES DE LOS INGREDIENTES
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    const botonmostraringrediente = document.getElementById("botonmostraringrediente"); // Botón para mostrar todos los ingredientes
+    const botoninsertaringrediente = document.getElementById("botoninsertaringrediente"); // Botón para insertar un nuevo ingrediente
+    const botoneliminaringrediente = document.getElementById("botoneliminaringrediente"); // Botón para eliminar un ingrediente
+    const botonactualizaringrediente = document.getElementById("botonactualizaringrediente"); // Botón para actualizar un ingrediente
+    const mensajesalidaingrediente = document.getElementById("mensajesalidaingrediente"); // Contenedor donde se mostrarán los resultados
+
+
 
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //FUNCIONES DE LOS POSTRES
@@ -596,5 +611,171 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         actualizarPlato(plato);
+    });
+
+
+
+    //Página sobre los ingredientes
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    //FUNCIONES DE LOS INGREDIENTES
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    function mostrarIngrediente (ingredientes) {
+        mensajesalidaingrediente.innerHTML = ""; // Limpio el contenedor de resultados
+
+        // Si no hay ingredientes encontrados, muestro un mensaje
+        if (ingredientes.length === 0) {
+            mensajesalidabebida.innerHTML = "<p>No se encontraron ingredientes.</p>";
+        } else {
+            // Recorro la lista de ingredientes y creo un div para cada uno
+            ingredientes.forEach(ingrediente => {
+                let div = document.createElement("div");
+                div.classList.add("grid-item");
+                div.innerHTML = `
+                    <p><strong><u>Nombre:</u></strong> <span>${ingrediente.nombre}</span></p>
+                    <p><strong><u>Tipo:</u></strong> <span>${ingrediente.tipo}</span></p>
+                `;
+
+                mensajesalidaingrediente.appendChild(div); // Agrego el div al contenedor de salida
+            });
+        }
+    }
+ 
+    function insertarIngrediente (ingrediente) {
+        // Creo la URL del Endpoint del servidor para insertar un ingrediente
+        const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
+        ENDPOINT_SERVER_PUERTO.port = PORT;
+        
+        const ENDPOINT_SERVER_INSERTAR_INGREDIENTES = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE,
+        ENDPOINT_SERVER_PUERTO);
+        
+        //console.log(ENDPOINT_SERVER_INSERTAR_IGREDIENTES.href);
+        
+        fetch(ENDPOINT_SERVER_INSERTAR_INGREDIENTES, {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(ingrediente)
+        })
+        .then(respuesta_servidor => {
+        if (!respuesta_servidor.ok) {
+            throw new Error("Error al insertar la ingrediente.");
+        }
+        return respuesta_servidor.json();
+        })
+        .then(datos => {
+            console.log(datos);
+            alert(datos.mensaje);
+        })
+        .catch(error => {
+            console.error("Error al insertar el ingrediente:", error); // Muestro el error en la consola
+            mensajesalidaingrediente.innerHTML = `<p><b>Error</b>: ${error}</p>`; // Muestro mensaje de error en la interfaz
+        });
+    }
+
+     function eliminarIngrediente (ingrediente) {
+        // Creo la URL del Endpoint del servidor para eliminar el ingrediente
+        const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
+        ENDPOINT_SERVER_PUERTO.port = PORT;
+        
+        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.nombre)}`,
+        ENDPOINT_SERVER_PUERTO);
+        
+        //console.log(ENDPOINT_SERVER_ELIMINAR_INGREDIENTES.href);
+        
+        fetch(ENDPOINT_SERVER_ELIMINAR_INGREDIENTE, {
+            method: "DELETE"
+        })
+            .then(respuesta_servidor => {
+                if (!respuesta_servidor.ok) {
+                    throw new Error("Error al eliminar el ingrediente.");
+                }
+                return respuesta_servidor.json();
+            })
+            .then(datos => {
+                console.log(datos);
+                alert(datos.mensaje);
+            })
+        
+            .catch(error => {
+                console.error("Error al eliminar el ingrediente:", error); // Muestro el error en la consola
+                mensajesalidaingrediente.innerHTML = `<p><b>Error</b>: ${error}</p>`; // Muestro mensaje de error
+            });
+    }
+
+    function actualizarIngrediente (ingrediente) {
+        // Creo la URL del Endpoint del servidor para actualizar el ingrediente
+        const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
+        ENDPOINT_SERVER_PUERTO.port = PORT;
+        
+        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.nombre)}`,
+         ENDPOINT_SERVER_PUERTO);
+        
+        //console.log(ENDPOINT_SERVER_ELIMINAR_INGREDIENTE.href);
+        
+        fetch(ENDPOINT_SERVER_ELIMINAR_INGREDIENTE, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(ingrediente)
+        })
+            .then(respuesta_servidor => {
+                if (!respuesta_servidor.ok) {
+                    throw new Error("Error al actualizar el ingrediente.");
+                }
+                return respuesta_servidor.json();
+            })
+            .then(datos => {
+                console.log(datos);
+                alert(datos.mensaje);
+            })
+            .catch(error => {
+                console.error("Error al actualizar el ingrediente:", error); // Muestro el error en la consola
+                mensajesalidaingrediente.innerHTML = `<p><b>Error</b>: ${error}</p>`; // Muestro mensaje de error en la interfaz
+            });
+    }
+    
+
+    //botones
+    botonmostraringrediente.addEventListener("click", () => {
+    fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_INGREDIENTE}`)
+        .then(res => res.json())
+        .then(data => mostrarIngrediente(data))
+        .catch(err => console.error(err));
+    });
+
+
+    botoninsertaringrediente.addEventListener("click", () => {
+        // Inserto un objeto ingrediente con datos inventados fijos
+        const ingrediente = {
+            nombre: "Garbanzos",
+            tipo: "Carbohidratos"
+        };
+
+        insertarIngrediente (ingrediente);
+    });
+
+    botoneliminaringrediente.addEventListener("click", () => {
+        // Elimino un objeto ingrediente con datos inventados fijos
+        const ingrediente = {
+            nombre: "Garbanzos",
+            tipo: "Carbohidratos"
+        };
+
+        eliminarIngrediente (ingrediente);
+    });
+
+    botonactualizarbebida.addEventListener("click", () => {
+        // Actualizo un objeto ingrediente con datos inventados fijos
+        // Elimino un objeto ingrediente con datos inventados fijos
+        const ingrediente = {
+            nombre: "Garbanzos",
+            tipo: "Carbohidratos"
+        };
+
+        actualizarIngrediente(ingrediente);
     });
 });

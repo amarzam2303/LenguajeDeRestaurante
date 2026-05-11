@@ -238,8 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
     botoninsertarpostre.addEventListener("click", () => {
         // Inserto un objeto postre con datos inventados fijos
         const postre = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
+            nombre: "Macarons",
+            pais_origen: "Francia",
             precio: 2.5,
             con_o_sin_azucar: "Con azúcar"
         };
@@ -250,8 +250,8 @@ document.addEventListener("DOMContentLoaded", () => {
     botoneliminarpostre.addEventListener("click", () => {
         // Elimino un objeto postre con datos inventados fijos
         const postre = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
+            nombre: "Macarons",
+            pais_origen: "Francia",
             precio: 2.5,
             con_o_sin_azucar: "Con azúcar"
         };
@@ -262,8 +262,8 @@ document.addEventListener("DOMContentLoaded", () => {
     botonactualizarpostre.addEventListener("click", () => {
         // Actualizo un objeto postre con datos inventados fijos
         const postre = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
+            nombre: "Macarons",
+            pais_origen: "Francia",
             precio: 9.0,
             con_o_sin_azucar: "Con azúcar"
         };
@@ -410,11 +410,11 @@ document.addEventListener("DOMContentLoaded", () => {
     botoninsertarbebida.addEventListener("click", () => {
         // Inserto un objeto postre con datos inventados fijos
         const bebida = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
+            nombre: "Cola-cao",
+            pais_origen: "España",
             precio: 2.0,
             temperatura: "Caliente",
-            con_o_sin_hielo: "Con hielo"
+            con_o_sin_hielo: "Sin hielo"
         };
 
         insertarBebida(bebida);
@@ -423,11 +423,11 @@ document.addEventListener("DOMContentLoaded", () => {
     botoneliminarbebida.addEventListener("click", () => {
         // Elimino un objeto bebida con datos inventados fijos
         const bebida = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
+            nombre: "Cola-cao",
+            pais_origen: "España",
             precio: 2.0,
             temperatura: "Caliente",
-            con_o_sin_hielo: "Con hielo"
+            con_o_sin_hielo: "Sin hielo"
         };
 
         eliminarBebida(bebida);
@@ -436,11 +436,11 @@ document.addEventListener("DOMContentLoaded", () => {
     botonactualizarbebida.addEventListener("click", () => {
         // Actualizo un objeto postre con datos inventados fijos
         const bebida = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
+            nombre: "Cola-cao",
+            pais_origen: "España",
             precio: 2.5,
             temperatura: "Caliente",
-            con_o_sin_hielo: "Con hielo"
+            con_o_sin_hielo: "Sin hielo"
         };
 
         actualizarBebida(bebida);
@@ -583,9 +583,9 @@ document.addEventListener("DOMContentLoaded", () => {
     botoninsertarplato.addEventListener("click", () => {
         // Inserto un objeto postre con datos inventados fijos
         const plato = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
-            precio: 12.5,
+            nombre: "Nuggets de Pollo",
+            pais_origen: "Estados unidos",
+            precio: 5.9
         };
 
         insertarPlato(plato);
@@ -594,9 +594,9 @@ document.addEventListener("DOMContentLoaded", () => {
     botoneliminarplato.addEventListener("click", () => {
         // Elimino un objeto postre con datos inventados fijos
         const plato = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
-            precio: 12.5,
+            nombre: "Nuggets de Pollo",
+            pais_origen: "Estados unidos",
+            precio: 5.9
         };
 
         eliminarPlato(plato);
@@ -605,9 +605,9 @@ document.addEventListener("DOMContentLoaded", () => {
     botonactualizarplato.addEventListener("click", () => {
         // Actualizo un objeto postre con datos inventados fijos
         const plato = {
-            nombre: "00Prueba00",
-            pais_origen: "00Prueba00",
-            precio: 9.0,
+            nombre: "Nuggets de Pollo",
+            pais_origen: "Estados unidos",
+            precio: 9.0
         };
 
         actualizarPlato(plato);

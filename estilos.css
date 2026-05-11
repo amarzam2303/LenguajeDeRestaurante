@@ -132,12 +132,21 @@ footer {
     margin-top: 30px;
 }
 
-
+/*Quitar los puntitos del navegador*/
 li {
     list-style: none;
     display: inline;
 }
 
+/*El contenedor del menú*/
 .contenedor-grid {
+    background-color: white; 
+    margin: 5px;
+}
+
+.contenedor-menu {
     background-color: white;
+    border: 10px solid #2c1a0e;
+    border-radius: 10px;
+    padding: 20px;
 }

@@ -113,6 +113,7 @@ button:hover {
     background: white;
     border-radius: 8px;
     padding: 20px;
+    margin-top: 15px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
     opacity: 0.5;
@@ -129,4 +130,14 @@ footer {
     text-align: center;
     padding: 15px;
     margin-top: 30px;
+}
+
+
+li {
+    list-style: none;
+    display: inline;
+}
+
+.contenedor-grid {
+    background-color: white;
 }

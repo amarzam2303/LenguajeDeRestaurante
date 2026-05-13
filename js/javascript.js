@@ -25,7 +25,6 @@ const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_PLATO = "plato";
 const ENDPOINT_OBTENER_INGREDIENTE = "ingredientes";
 const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE = "ingrediente";
 
-
 document.addEventListener("DOMContentLoaded", () => {
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //CONSTANTES DE LOS POSTRES
@@ -63,6 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const botonactualizaringrediente = document.getElementById("botonactualizaringrediente"); // Botón para actualizar un ingrediente
     const mensajesalidaingrediente = document.getElementById("mensajesalidaingrediente"); // Contenedor donde se mostrarán los resultados
 
+
+    //CONSTANTES DE LA PÁGINA DE CREAR TU MENÚ FAVORITO
+    const formulario = document.getElementById("formulario");
+    const nuevomenucreado = document.getElementById("nuevomenucreado");
 
 
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -781,4 +784,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
         actualizarIngrediente(ingrediente);
     });
+
+
+
+    //-------- PÁGINA DE CREAR TU MENÚ FAVORITO --------
+    //--------------------------------------------------
+
+    //Mostrar contenido del contenedor del formulario mandado
+    if (formulario) {
+        formulario.addEventListener("submit", (event) => {
+
+            // Evita recargar la página
+            event.preventDefault();
+
+            //Obtener el contenido escrito en el formulario
+            const nombre = document.getElementById("nombre").value;
+            const email = document.getElementById("email").value;
+            const bebida = document.getElementById("bebida-fav").value;
+            const plato = document.getElementById("plato-fav").value;
+            const postre = document.getElementById("postre-fav").value;
+
+            //Plasmarlo en el div de abajo del formulario
+
+            //para crear cada menú escrito, debemos de crear un nnuevo div
+            const nuevoMenu = document.createElement("div");
+
+            nuevoMenu.innerHTML = `
+                <h3>Nuevo menú creado</h3>
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Bebida:</strong> ${bebida}</p>
+                <p><strong>Plato:</strong> ${plato}</p>
+                <p><strong>Postre:</strong> ${postre}</p>
+                <hr>
+            `;
+
+            // Añadir debajo
+            nuevomenucreado.appendChild(nuevoMenu);
+        });
+    }
+
 });

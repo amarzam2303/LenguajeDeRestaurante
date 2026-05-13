@@ -30,10 +30,10 @@
 
         <!--Contenedor principal-->
         <main>
-            <form method="post" >
+            <form id="formulario" method="post" >
                 <fieldset>
                     <div>
-                        <label for="usuario">Introduce tu nombre *: <input id="nombre" type="text" required /></label>
+                        <label for="nombre">Introduce tu nombre *: <input id="nombre" type="text" required /></label>
                     </div>
                     <div>
                         <label for="email">Introduce tu correo *: <input id="email" type="email" required /></label>
@@ -49,11 +49,15 @@
                     </div>
 
                     <!--Enviar-->
-                    <button id="botonformulario" class="botones">Enviar</button>
+                    <button id="botonformulario" type="submit" class="botones">Enviar</button>
 
                 </fieldset>
             </form>
         </main>
+
+        <!--contenedor para mostrar el formulario mandado-->
+        <div id="nuevomenucreado" class="contenedor-formulario"></div>
+
 
         <!--Pie de página-->
         <footer>

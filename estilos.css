@@ -164,7 +164,7 @@ li {
     padding: 20px;
 }*/
 
-.contenedor-menu {
+.contenedor-menu, .contenedor-ingredientes, form {
     background: url(imagenes/pizarra.jpg);
     border: 15px solid saddlebrown;
     border-radius: 10px;

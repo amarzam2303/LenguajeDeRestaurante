@@ -23,7 +23,7 @@
             <ul>
                 <li><a href="../index.html" class="index">Menús</a></li>
                 <li><a href="ingredientes.html" class="ingredientes">Ingredientes</a></li>
-                <li><a href="creartumenufavorito.html" class="ingredientes">Crear tu menú favorito</a></li>
+                <li><a href="creartumenufavorito.html" class="tumenufav">Crear tu menú favorito</a></li>
                 <li><a href="sobrenosotros.html" class="sobrenosotros">Sobre nosotros</a></li>
             </ul>
         </nav>
@@ -33,20 +33,24 @@
             <form method="post" >
                 <fieldset>
                     <div>
-                        <label for="usuario">Introduce tu nombre: <input id="nombre" type="text" required /></label>
+                        <label for="usuario">Introduce tu nombre *: <input id="nombre" type="text" required /></label>
                     </div>
                     <div>
-                        <label for="email">Introduce tu correo: <input id="email" type="email" required /></label>
+                        <label for="email">Introduce tu correo *: <input id="email" type="email" required /></label>
                     </div>
                     <div>
-                        <label for="bebida-fav">Introduce tu bebida favorita: <input id="bebida-fav" type="text" required /></label>
+                        <label for="bebida-fav">Introduce tu bebida favorita *: <input id="bebida-fav" type="text" required /></label>
                     </div>
                     <div>
-                        <label for="plato-fav">Introduce tu plato favorito: <input id="plato-fav" type="text" required /></label>
+                        <label for="plato-fav">Introduce tu plato favorito *: <input id="plato-fav" type="text" required /></label>
                     </div>
                     <div>
                         <label for="postre-fav">Introduce tu postre favorito: <input id="postre-fav" type="text" /></label>
                     </div>
+
+                    <!--Enviar-->
+                    <button id="botonformulario" class="botones">Enviar</button>
+
                 </fieldset>
             </form>
         </main>

@@ -312,7 +312,7 @@ server.get("/platos", (req, res) => {
 //-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 // APARTADOS DE LOS INGREDIENTES
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-server.post("/ingrediente", (req, res) => {
+server.post("/ingredientes", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const { nombre, tipo } = req.body;
 
@@ -338,7 +338,7 @@ server.post("/ingrediente", (req, res) => {
     );
 });
 
-server.put("/ingrediente/:id", (req, res) => {
+server.put("/ingredientes/:id", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const id = req.params.id;
     const { nombre, tipo } = req.body;
@@ -363,7 +363,7 @@ server.put("/ingrediente/:id", (req, res) => {
     );
 });
 
-server.delete("/ingrediente/:id", (req, res) => {
+server.delete("/ingredientes/:id", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const id = req.params.id;
 

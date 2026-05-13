@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-     function eliminarPostre(postre) {
+    function eliminarPostre(postre) {
         // Creo la URL del Endpoint del servidor para eliminar el postre
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
@@ -626,13 +626,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Si no hay ingredientes encontrados, muestro un mensaje
         if (ingredientes.length === 0) {
-            mensajesalidabebida.innerHTML = "<p>No se encontraron ingredientes.</p>";
+            mensajesalidaingrediente.innerHTML = "<p>No se encontraron ingredientes.</p>";
         } else {
             // Recorro la lista de ingredientes y creo un div para cada uno
             ingredientes.forEach(ingrediente => {
                 let div = document.createElement("div");
                 div.classList.add("grid-item");
                 div.innerHTML = `
+                     <p><strong><u>ID:</u></strong> <span>${ingrediente.id}</span></p>
                     <p><strong><u>Nombre:</u></strong> <span>${ingrediente.nombre}</span></p>
                     <p><strong><u>Tipo:</u></strong> <span>${ingrediente.tipo}</span></p>
                 `;
@@ -751,6 +752,7 @@ document.addEventListener("DOMContentLoaded", () => {
     botoninsertaringrediente.addEventListener("click", () => {
         // Inserto un objeto ingrediente con datos inventados fijos
         const ingrediente = {
+            id: 33,
             nombre: "Garbanzos",
             tipo: "Carbohidratos"
         };
@@ -761,6 +763,7 @@ document.addEventListener("DOMContentLoaded", () => {
     botoneliminaringrediente.addEventListener("click", () => {
         // Elimino un objeto ingrediente con datos inventados fijos
         const ingrediente = {
+            id: 33,
             nombre: "Garbanzos",
             tipo: "Carbohidratos"
         };
@@ -768,10 +771,11 @@ document.addEventListener("DOMContentLoaded", () => {
         eliminarIngrediente (ingrediente);
     });
 
-    botonactualizarbebida.addEventListener("click", () => {
+    botonactualizaringrediente.addEventListener("click", () => {
         // Actualizo un objeto ingrediente con datos inventados fijos
         // Elimino un objeto ingrediente con datos inventados fijos
         const ingrediente = {
+            id: 12,
             nombre: "Garbanzos",
             tipo: "Carbohidratos"
         };

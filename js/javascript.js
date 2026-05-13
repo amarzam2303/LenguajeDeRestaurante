@@ -23,7 +23,7 @@ const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_PLATO = "plato";
 //ENDPOINT DE LOS INGREDIENTES
 //----------------------------------------------------------------------
 const ENDPOINT_OBTENER_INGREDIENTE = "ingredientes";
-const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE = "ingrediente";
+const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE = "ingredientes";
 
 document.addEventListener("DOMContentLoaded", () => {
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -62,10 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const botonactualizaringrediente = document.getElementById("botonactualizaringrediente"); // Botón para actualizar un ingrediente
     const mensajesalidaingrediente = document.getElementById("mensajesalidaingrediente"); // Contenedor donde se mostrarán los resultados
 
-
-    //CONSTANTES DE LA PÁGINA DE CREAR TU MENÚ FAVORITO
-    const formulario = document.getElementById("formulario");
-    const nuevomenucreado = document.getElementById("nuevomenucreado");
 
 
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -618,29 +614,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    //Página sobre los ingredientes
+    //Página sobre los ingredientes 
+    //ESTOY AL BORDE DEL DELIRIO PORQUE NO PUEDO CORREGIR EL ERROR QUE TENGO
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //FUNCIONES DE LOS INGREDIENTES
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  
-    function mostrarPlato (platos) {
-        mensajesalidaplato.innerHTML = ""; // Limpio el contenedor de resultados
+    function mostrarIngrediente (ingredientes) {
+        mensajesalidaingrediente.innerHTML = ""; // Limpio el contenedor de resultados
 
-        // Si no hay postres encontrados, muestro un mensaje
-        if (platos.length === 0) {
-            mensajesalidaplato.innerHTML = "<p>No se encontraron platos.</p>";
+        // Si no hay ingredientes encontrados, muestro un mensaje
+        if (ingredientes.length === 0) {
+            mensajesalidaingrediente.innerHTML = "<p>No se encontraron ingredientes.</p>";
         } else {
-            // Recorro la lista de platos principales y creo un div para cada uno
-            platos.forEach(plato => {
+            // Recorro la lista de ingredientes y creo un div para cada uno
+            ingredientes.forEach(ingrediente => {
                 let div = document.createElement("div");
                 div.classList.add("grid-item");
                 div.innerHTML = `
-                    <p><strong><u>Nombre:</u></strong> <span>${plato.nombre}</span></p>
-                    <p><strong><u>País de origen:</u></strong> <span>${plato.pais_origen}</span></p>
-                    <p><strong><u>Precio:</u></strong> <span>${plato.precio}</span></p>
-                    `;
+                    <p><strong>Id:</strong> ${ingrediente.id}</p>
+                    <p><strong>Nombre:</strong> ${ingrediente.nombre}</p>
+                    <p><strong>Tipo:</strong> ${ingrediente.tipo}</p>
+                `;
 
-                mensajesalidaplato.appendChild(div); // Agrego el div al contenedor de salida
+                mensajesalidaingrediente.appendChild(div); // Agrego el div al contenedor de salida
             });
         }
     }
@@ -745,10 +742,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //botones
     botonmostraringrediente.addEventListener("click", () => {
-    fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_INGREDIENTE}`)
-        .then(res => res.json())
-        .then(data => mostrarIngrediente(data))
-        .catch(err => console.error(err));
+        fetch(`http://localhost:3000/ingredientes`)
+            .then(res => {
+                console.log("STATUS:", res.status);
+                return res.json();
+            })
+            .then(data => {
+                console.log("DATA:", data);
+                mostrarIngrediente(data);
+            })
+            .catch(err => console.error("ERROR FETCH:", err));
     });
 
 
@@ -790,8 +793,12 @@ document.addEventListener("DOMContentLoaded", () => {
     //-------- PÁGINA DE CREAR TU MENÚ FAVORITO --------
     //--------------------------------------------------
 
+    //CONSTANTES DE LA PÁGINA DE CREAR TU MENÚ FAVORITO
+    const formulario = document.getElementById("formulario");
+    const nuevomenucreado = document.getElementById("nuevomenucreado");
+
     //Mostrar contenido del contenedor del formulario mandado
-    if (formulario) {
+    if (formulario && nuevomenucreado) {
         formulario.addEventListener("submit", (event) => {
 
             // Evita recargar la página
@@ -816,7 +823,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p><strong>Bebida:</strong> ${bebida}</p>
                 <p><strong>Plato:</strong> ${plato}</p>
                 <p><strong>Postre:</strong> ${postre}</p>
-                <hr>
             `;
 
             // Añadir debajo

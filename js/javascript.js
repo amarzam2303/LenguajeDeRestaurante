@@ -619,30 +619,30 @@ document.addEventListener("DOMContentLoaded", () => {
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //FUNCIONES DE LOS INGREDIENTES
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+    function mostrarPlato (platos) {
+        mensajesalidaplato.innerHTML = ""; // Limpio el contenedor de resultados
 
-
-    function mostrarIngrediente (ingredientes) {
-        mensajesalidaingrediente.innerHTML = ""; // Limpio el contenedor de resultados
-
-        // Si no hay ingredientes encontrados, muestro un mensaje
-        if (ingredientes.length === 0) {
-            mensajesalidaingrediente.innerHTML = "<p>No se encontraron ingredientes.</p>";
+        // Si no hay postres encontrados, muestro un mensaje
+        if (platos.length === 0) {
+            mensajesalidaplato.innerHTML = "<p>No se encontraron platos.</p>";
         } else {
-            // Recorro la lista de ingredientes y creo un div para cada uno
-            ingredientes.forEach(ingrediente => {
+            // Recorro la lista de platos principales y creo un div para cada uno
+            platos.forEach(plato => {
                 let div = document.createElement("div");
                 div.classList.add("grid-item");
                 div.innerHTML = `
-                     <p><strong><u>ID:</u></strong> <span>${ingrediente.id}</span></p>
-                    <p><strong><u>Nombre:</u></strong> <span>${ingrediente.nombre}</span></p>
-                    <p><strong><u>Tipo:</u></strong> <span>${ingrediente.tipo}</span></p>
-                `;
+                    <p><strong><u>Nombre:</u></strong> <span>${plato.nombre}</span></p>
+                    <p><strong><u>País de origen:</u></strong> <span>${plato.pais_origen}</span></p>
+                    <p><strong><u>Precio:</u></strong> <span>${plato.precio}</span></p>
+                    `;
 
-                mensajesalidaingrediente.appendChild(div); // Agrego el div al contenedor de salida
+                mensajesalidaplato.appendChild(div); // Agrego el div al contenedor de salida
             });
         }
     }
- 
+    
+
     function insertarIngrediente (ingrediente) {
         // Creo la URL del Endpoint del servidor para insertar un ingrediente
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
@@ -651,7 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_INSERTAR_INGREDIENTES = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE,
         ENDPOINT_SERVER_PUERTO);
         
-        //console.log(ENDPOINT_SERVER_INSERTAR_IGREDIENTES.href);
+        //console.log(ENDPOINT_SERVER_INSERTAR_INGREDIENTES.href);
         
         fetch(ENDPOINT_SERVER_INSERTAR_INGREDIENTES, {
         method: "POST",
@@ -662,7 +662,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(respuesta_servidor => {
         if (!respuesta_servidor.ok) {
-            throw new Error("Error al insertar la ingrediente.");
+            throw new Error("Error al insertar el ingrediente.");
         }
         return respuesta_servidor.json();
         })
@@ -681,7 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
         
-        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.nombre)}`,
+        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.id)}`,
         ENDPOINT_SERVER_PUERTO);
         
         //console.log(ENDPOINT_SERVER_ELIMINAR_INGREDIENTES.href);
@@ -711,7 +711,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
         
-        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.nombre)}`,
+        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.id)}`,
          ENDPOINT_SERVER_PUERTO);
         
         //console.log(ENDPOINT_SERVER_ELIMINAR_INGREDIENTE.href);
@@ -757,7 +757,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tipo: "Carbohidratos"
         };
 
-        insertarIngrediente (ingrediente);
+        insertarIngrediente(ingrediente);
     });
 
     botoneliminaringrediente.addEventListener("click", () => {
@@ -768,12 +768,11 @@ document.addEventListener("DOMContentLoaded", () => {
             tipo: "Carbohidratos"
         };
 
-        eliminarIngrediente (ingrediente);
+        eliminarIngrediente(ingrediente);
     });
 
     botonactualizaringrediente.addEventListener("click", () => {
         // Actualizo un objeto ingrediente con datos inventados fijos
-        // Elimino un objeto ingrediente con datos inventados fijos
         const ingrediente = {
             id: 12,
             nombre: "Garbanzos",

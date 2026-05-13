@@ -379,7 +379,7 @@ server.delete("/ingredientes/:id", (req, res) => {
     });
 });
 
-server.get("/ingrediente", (req, res) => {
+server.get("/ingredientes", (req, res) => {
     const sql = "SELECT * FROM Ingrediente";
 
     pool_mysql.query(sql, (error, resultados) => {

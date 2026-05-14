@@ -747,7 +747,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /*
+    
     //-------- PÁGINA DE CREAR TU MENÚ FAVORITO --------
     //--------------------------------------------------
 
@@ -785,6 +785,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // Añadir debajo
             nuevomenucreado.appendChild(nuevoMenu);
         });
-    }*/
+    }
 
 });

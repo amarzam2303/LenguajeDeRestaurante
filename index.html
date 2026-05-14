@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <!--Cabeza-->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Ana Martos Zambrana y Aarón Martín Pozo">
+        <!--<link rel="shortcut icon" href="" type="image/x-icon" alt="favicon_de_la_web">-->
+        <link rel="stylesheet" href="estilos.css">
+        <title>Menús</title>
+    </head>
+
+    <!--Cuerpo-->
+    <body>
+        <!--Cabecera-->
+        <header>
+            <h1>¡Bienvenido a Lenguaje de Restaurantes!</h1>
+            <p>A continuación, encontrarás una serie de menús que sirve nuestro establecimiento</p>
+        </header>
+
+        <!--Navegador-->
+        <nav class="navegador">
+            <ul>
+                <li><a href="index.html" class="index">Menús</a></li>
+                <li><a href="paginas/ingredientes.html" class="ingredientes">Ingredientes</a></li>
+                <li><a href="paginas/creartumenufavorito.html" class="tumenufav">Crear tu menú favorito</a></li>
+                <li><a href="paginas/sobrenosotros.html" class="sobrenosotros">Sobre nosotros</a></li>
+            </ul>
+        </nav>
+
+        <!--Contenedor principal-->
+        <main>
+            <!--Contenedor que tendrá los platos, postres y bebidas del menú 1-->
+            <!--Además de las opciones como eliminar o añadir platos-->
+            <div class="contenedor-menu">
+                <h2>Menu clasico</h2>
+
+                <!--Contenedor que contenga las bebidas-->
+                <div class="bebidas">
+
+                    <!--Contenido donde se muestran las bebidas de la BD no relacional-->
+                    <div class="contenido-principal">
+                        <h3>BEBIDAS</h3>
+                        <div id="mensajesalidabebida" class="contenedor-grid"></div>
+                    </div>
+
+
+                    <!--Botones-->
+                    <!-- Botón para mostrar las bebidas-->
+                    <button id="botonmostrarbebida" class="botones">
+                        <!--<img src="imagenes/" alt="Mostrar todos" class="imagen-boton">-->
+                        Mostrar todas las bebidas
+                    </button>
+
+                    <!-- Botón para insertar una bebida-->
+                    <button id="botoninsertarbebida" class="botones">
+                        <!--img src="imagenes/" alt="Insertar" class="imagen-boton"-->
+                        Insertar una bebida
+                    </button>
+
+                    <!-- Botón para eliminar una bebida -->
+                    <button id="botoneliminarbebida" class="botones">
+                        <!--img src="imagenes/" alt="Eiminar" class="imagen-boton"-->
+                        Eliminar una bebida
+                    </button> 
+                    
+                    <!-- Botón para actualizar una bebida -->
+                    <button id="botonactualizarbebida" class="botones">
+                        <!--img src="imagenes/" alt="Actualizar" class="imagen-boton"-->
+                        Actualizar una bebida
+                    </button> 
+                </div>
+
+
+                <!--Contenedor que contenga los platos-->
+                <div class="platos">
+
+                    <!--Contenido donde se muestran los postres de la BD no relacional-->
+                    <div class="contenido-principal">
+                        <h3>PLATOS PRINCIPALES</h3>
+                        <div id="mensajesalidaplato" class="contenedor-grid"></div>
+                    </div>
+
+
+                    <!--Botones-->
+                    <!-- Botón para mostrar los platos principales-->
+                    <button id="botonmostrarplato" class="botones">
+                        <!--<img src="imagenes/" alt="Mostrar todos" class="imagen-boton">-->
+                        Mostrar todos los platos principales
+                    </button>
+
+                    <!-- Botón para insertar un postre -->
+                    <button id="botoninsertarplato" class="botones">
+                        <!--img src="imagenes/" alt="Insertar" class="imagen-boton"-->
+                        Insertar un plato principal
+                    </button>
+
+                    <!-- Botón para eliminar un postre -->
+                    <button id="botoneliminarplato" class="botones">
+                        <!--img src="imagenes/" alt="Eiminar" class="imagen-boton"-->
+                        Eiminar un plato principal
+                    </button> 
+                    
+                    <!-- Botón para actualizar un postre -->
+                    <button id="botonactualizarplato" class="botones">
+                        <!--img src="imagenes/" alt="Actualizar" class="imagen-boton"-->
+                        Actualizar un plato principal
+                    </button> 
+                </div>
+
+
+                <!--Contenedor que contenga los postres-->
+                <div class="postre">
+
+                    <!--Contenido donde se muestran los postres de la BD no relacional-->
+                    <div class="contenido-principal">
+                        <h3>POSTRES</h3>
+                        <div id="mensajesalidapostre" class="contenedor-grid"></div>
+                    </div>
+
+
+                    <!--Botones-->
+                    <!-- Botón para mostrar los postres-->
+                    <button id="botonmostrarpostre" class="botones">
+                        <!--<img src="imagenes/" alt="Mostrar todos" class="imagen-boton">-->
+                        Mostrar todos los postres
+                    </button>
+
+                    <!-- Botón para insertar un postre -->
+                    <button id="botoninsertarpostre" class="botones">
+                        <!--img src="imagenes/" alt="Insertar" class="imagen-boton"-->
+                        Insertar un postre
+                    </button>
+
+                    <!-- Botón para eliminar un postre -->
+                    <button id="botoneliminarpostre" class="botones">
+                        <!--img src="imagenes/" alt="Eiminar" class="imagen-boton"-->
+                        Eiminar un postre
+                    </button> 
+                    
+                    <!-- Botón para actualizar un postre -->
+                    <button id="botonactualizarpostre" class="botones">
+                        <!--img src="imagenes/" alt="Actualizar" class="imagen-boton"-->
+                        Actualizar un postre
+                    </button> 
+                </div>
+            </div>
+
+
+            <!--Resto de menús-->
+            <div class="fuera-servicio">
+                <h2>Menú vegano</h2>
+                <p>Lo sentimos, menú fuera de servicio.</p>
+            </div>
+
+            <div class="fuera-servicio">
+                <h2>Menú libre de alérgenos</h2>
+                <p>Lo sentimos, menú fuera de servicio.</p>
+            </div>
+
+        </main>
+
+        <!--Pie de página-->
+        <footer>
+            <p>&copy; Trabajo hecho por los estudiantes de DAW - Ana Martos Zambrana y Aarón Martín Pozo</p>
+        </footer>
+
+        <!--JavaScript-->
+        <script src="js/javascript.js"></script>
+    </body>
+</html>

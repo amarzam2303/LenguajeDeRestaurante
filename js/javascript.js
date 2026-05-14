@@ -23,7 +23,7 @@ const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_PLATO = "plato";
 //ENDPOINT DE LOS INGREDIENTES
 //----------------------------------------------------------------------
 const ENDPOINT_OBTENER_INGREDIENTE = "ingredientes";
-const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE = "ingredientes";
+const ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE = "ingrediente";
 
 document.addEventListener("DOMContentLoaded", () => {
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -648,17 +648,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
         
-        const ENDPOINT_SERVER_INSERTAR_INGREDIENTES = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE,
-        ENDPOINT_SERVER_PUERTO);
+         const ENDPOINT_SERVER_INSERTAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE, ENDPOINT_SERVER_PUERTO);
         
-        //console.log(ENDPOINT_SERVER_INSERTAR_INGREDIENTES.href);
+        //console.log(ENDPOINT_SERVER_INSERTAR_INGREDIENTE.href);
         
-        fetch(ENDPOINT_SERVER_INSERTAR_INGREDIENTES, {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json"
-        },
-        body: JSON.stringify(ingrediente)
+        fetch(ENDPOINT_SERVER_INSERTAR_INGREDIENTE, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(ingrediente)
         })
         .then(respuesta_servidor => {
         if (!respuesta_servidor.ok) {
@@ -741,7 +740,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //botones
-    botonmostraringrediente.addEventListener("click", () => {
+    /*botonmostraringrediente.addEventListener("click", () => {
         fetch(`http://localhost:3000/ingredientes`)
             .then(res => {
                 console.log("STATUS:", res.status);
@@ -752,15 +751,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 mostrarIngrediente(data);
             })
             .catch(err => console.error("ERROR FETCH:", err));
-    });
+    });*/
 
+    botonmostraringrediente.addEventListener("click", () => {
+    fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_INGREDIENTE}`)
+        .then(res => res.json())
+        .then(data => mostrarIngrediente(data))
+        .catch(err => console.error(err));
+    });
 
     botoninsertaringrediente.addEventListener("click", () => {
         // Inserto un objeto ingrediente con datos inventados fijos
         const ingrediente = {
-            id: 33,
             nombre: "Garbanzos",
-            tipo: "Carbohidratos"
+            tipo: "Carbohidratos/Almidones"
         };
 
         insertarIngrediente(ingrediente);
@@ -769,9 +773,8 @@ document.addEventListener("DOMContentLoaded", () => {
     botoneliminaringrediente.addEventListener("click", () => {
         // Elimino un objeto ingrediente con datos inventados fijos
         const ingrediente = {
-            id: 33,
             nombre: "Garbanzos",
-            tipo: "Carbohidratos"
+            tipo: "Carbohidratos/Almidones"
         };
 
         eliminarIngrediente(ingrediente);
@@ -780,9 +783,8 @@ document.addEventListener("DOMContentLoaded", () => {
     botonactualizaringrediente.addEventListener("click", () => {
         // Actualizo un objeto ingrediente con datos inventados fijos
         const ingrediente = {
-            id: 12,
             nombre: "Garbanzos",
-            tipo: "Carbohidratos"
+            tipo: "Carbohidratos/Almidones"
         };
 
         actualizarIngrediente(ingrediente);

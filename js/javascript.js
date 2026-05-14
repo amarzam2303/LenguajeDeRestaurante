@@ -90,43 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-    
-    /*  Próximamente en la tercera entrega el consultarlos
-
-    function consultarUsuarios (filtro = "todos", valor = "") {
-        // Creo la URL del Endpoint del servidor para consultar usuarios
-        const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
-        ENDPOINT_SERVER_PUERTO.port = PORT;
-        
-        const ENDPOINT_SERVER_POSTRES = new URL(ENDPOINT_OBTENER_POSTRES, ENDPOINT_SERVER_PUERTO);
-        
-        // Si se ha indicado un filtro, lo agrego a la URL con parámetros de consulta
-        switch (filtro) {
-            case "precio":
-                ENDPOINT_SERVER_USUARIOS.searchParams.set('precio', valor); // Búsqueda por precio
-                break;
-        }
-        
-        //console.log(ENDPOINT_SERVER_USUARIOS.href);
-        
-        fetch(ENDPOINT_SERVER_USUARIOS)
-            .then(respuesta_servidor => {
-                if (!respuesta_servidor.ok) {
-                    throw new Error("Error al obtener los usuarios.");
-                }
-                return respuesta_servidor.json();
-            })
-
-            .then(datos_usuarios => {
-                mostrarUsuarios(datos_usuarios); // Muestro los usuarios en la página
-            })
-
-            .catch(error => {
-                console.error("Error consultando usuarios:", error); // Muestro el error en la consola
-                mensajesalida.innerHTML = `<p><b>Error</b>: ${error}</p>`; // Muestro mensaje de error en la interfaz
-            });
-    }
-    */
 
     function insertarPostre(postre) {
         // Creo la URL del Endpoint del servidor para insertar un postre
@@ -274,7 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //FUNCIONES DE LAS BEBIDAS
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 
     function mostrarBebida (bebidas) {
         mensajesalidabebida.innerHTML = ""; // Limpio el contenedor de resultados
@@ -740,58 +702,52 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //botones
-    /*botonmostraringrediente.addEventListener("click", () => {
-        fetch(`http://localhost:3000/ingredientes`)
-            .then(res => {
-                console.log("STATUS:", res.status);
-                return res.json();
-            })
-            .then(data => {
-                console.log("DATA:", data);
-                mostrarIngrediente(data);
-            })
-            .catch(err => console.error("ERROR FETCH:", err));
-    });*/
+    if (botonmostraringrediente) {
+        botonmostraringrediente.addEventListener("click", () => {
+        fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_INGREDIENTE}`)
+            .then(res => res.json())
+            .then(data => mostrarIngrediente(data))
+            .catch(err => console.error(err));
+        });
+    }
 
-    botonmostraringrediente.addEventListener("click", () => {
-    fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_INGREDIENTE}`)
-        .then(res => res.json())
-        .then(data => mostrarIngrediente(data))
-        .catch(err => console.error(err));
-    });
+    if (botoninsertaringrediente) {
+        botoninsertaringrediente.addEventListener("click", () => {
+            // Inserto un objeto ingrediente con datos inventados fijos
+            const ingrediente = {
+                nombre: "Garbanzos",
+                tipo: "Carbohidratos/Almidones"
+            };
 
-    botoninsertaringrediente.addEventListener("click", () => {
-        // Inserto un objeto ingrediente con datos inventados fijos
-        const ingrediente = {
-            nombre: "Garbanzos",
-            tipo: "Carbohidratos/Almidones"
-        };
+            insertarIngrediente(ingrediente);
+        });
+    }
 
-        insertarIngrediente(ingrediente);
-    });
+    if (botoneliminaringrediente) {
+        botoneliminaringrediente.addEventListener("click", () => {
+            // Elimino un objeto ingrediente con datos inventados fijos
+            const ingrediente = {
+                nombre: "Garbanzos",
+                tipo: "Carbohidratos/Almidones"
+            };
 
-    botoneliminaringrediente.addEventListener("click", () => {
-        // Elimino un objeto ingrediente con datos inventados fijos
-        const ingrediente = {
-            nombre: "Garbanzos",
-            tipo: "Carbohidratos/Almidones"
-        };
+            eliminarIngrediente(ingrediente);
+        });
+    }
 
-        eliminarIngrediente(ingrediente);
-    });
+    if (botonactualizaringrediente) {
+        botonactualizaringrediente.addEventListener("click", () => {
+            // Actualizo un objeto ingrediente con datos inventados fijos
+            const ingrediente = {
+                nombre: "Garbanzos",
+                tipo: "Carbohidratos/Almidones"
+            };
 
-    botonactualizaringrediente.addEventListener("click", () => {
-        // Actualizo un objeto ingrediente con datos inventados fijos
-        const ingrediente = {
-            nombre: "Garbanzos",
-            tipo: "Carbohidratos/Almidones"
-        };
+            actualizarIngrediente(ingrediente);
+        });
+    }
 
-        actualizarIngrediente(ingrediente);
-    });
-
-
-
+    /*
     //-------- PÁGINA DE CREAR TU MENÚ FAVORITO --------
     //--------------------------------------------------
 
@@ -802,8 +758,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //Mostrar contenido del contenedor del formulario mandado
     if (formulario && nuevomenucreado) {
         formulario.addEventListener("submit", (event) => {
-
-            // Evita recargar la página
+            // Evita recargar la página 
             event.preventDefault();
 
             //Obtener el contenido escrito en el formulario
@@ -820,16 +775,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             nuevoMenu.innerHTML = `
                 <h3>Nuevo menú creado</h3>
-                <p><strong>Nombre:</strong> ${nombre}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Bebida:</strong> ${bebida}</p>
-                <p><strong>Plato:</strong> ${plato}</p>
-                <p><strong>Postre:</strong> ${postre}</p>
+                <p><strong>Nombre:</strong> ${document.getElementById("nombre").value}</p>
+                <p><strong>Email:</strong> ${document.getElementById("email").value}</p>
+                <p><strong>Bebida:</strong> ${document.getElementById("bebida-fav").value}</p>
+                <p><strong>Plato:</strong> ${document.getElementById("plato-fav").value}</p>
+                <p><strong>Postre:</strong> ${document.getElementById("postre-fav").value}</p>
             `;
 
             // Añadir debajo
             nuevomenucreado.appendChild(nuevoMenu);
         });
-    }
+    }*/
 
 });

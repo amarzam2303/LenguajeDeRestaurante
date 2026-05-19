@@ -189,14 +189,16 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //botones
-    botonmostrarpostre.addEventListener("click", () => {
-    fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_POSTRE}`)
-        .then(res => res.json())
-        .then(data => mostrarPostre(data))
-        .catch(err => console.error(err));
-    });
+    if (botonmostrarpostre) {
+        botonmostrarpostre.addEventListener("click", () => {
+            fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_POSTRE}`)
+                .then(res => res.json())
+                .then(data => mostrarPostre(data))
+                .catch(err => console.error(err));
+        });
+    }
 
-
+if (botoninsertarpostre) {
     botoninsertarpostre.addEventListener("click", () => {
         // Inserto un objeto postre con datos inventados fijos
         const postre = {
@@ -205,10 +207,11 @@ document.addEventListener("DOMContentLoaded", () => {
             precio: 2.5,
             con_o_sin_azucar: "Con azúcar"
         };
-
+ 
         insertarPostre(postre);
     });
-
+}
+if (botoneliminarpostre) {
     botoneliminarpostre.addEventListener("click", () => {
         // Elimino un objeto postre con datos inventados fijos
         const postre = {
@@ -220,7 +223,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         eliminarPostre(postre);
     });
-
+}
+if (botonactualizarpostre) {
     botonactualizarpostre.addEventListener("click", () => {
         // Actualizo un objeto postre con datos inventados fijos
         const postre = {
@@ -232,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         actualizarPostre(postre);
     });
-
+}
 
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     //FUNCIONES DE LAS BEBIDAS
@@ -359,15 +363,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
 
-    //botones
+//botones
+if (botonmostrarbebida) {
     botonmostrarbebida.addEventListener("click", () => {
-    fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_BEBIDA}`)
-        .then(res => res.json())
-        .then(data => mostrarBebida(data))
-        .catch(err => console.error(err));
+        fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_BEBIDA}`)
+            .then(res => res.json())
+            .then(data => mostrarBebida(data))
+            .catch(err => console.error(err));
     });
+}
 
-
+if (botoninsertarbebida) {
     botoninsertarbebida.addEventListener("click", () => {
         // Inserto un objeto postre con datos inventados fijos
         const bebida = {
@@ -380,7 +386,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         insertarBebida(bebida);
     });
+}
 
+if (botoneliminarbebida) {
     botoneliminarbebida.addEventListener("click", () => {
         // Elimino un objeto bebida con datos inventados fijos
         const bebida = {
@@ -393,7 +401,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         eliminarBebida(bebida);
     });
+}
 
+if (botonactualizarbebida) {
     botonactualizarbebida.addEventListener("click", () => {
         // Actualizo un objeto postre con datos inventados fijos
         const bebida = {
@@ -406,6 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         actualizarBebida(bebida);
     });
+}
 
 
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -533,14 +544,16 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //botones
+if (botonmostrarplato) {
     botonmostrarplato.addEventListener("click", () => {
-    fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_PLATO}`)
-        .then(res => res.json())
-        .then(data => mostrarPlato(data))
-        .catch(err => console.error(err));
+        fetch(`${ENDPOINT_SERVER}:${PORT}/${ENDPOINT_OBTENER_PLATO}`)
+            .then(res => res.json())
+            .then(data => mostrarPlato(data))
+            .catch(err => console.error(err));
     });
+}
 
-
+if (botoninsertarplato) {
     botoninsertarplato.addEventListener("click", () => {
         // Inserto un objeto postre con datos inventados fijos
         const plato = {
@@ -551,7 +564,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         insertarPlato(plato);
     });
+}
 
+if (botoneliminarplato) {
     botoneliminarplato.addEventListener("click", () => {
         // Elimino un objeto postre con datos inventados fijos
         const plato = {
@@ -562,7 +577,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         eliminarPlato(plato);
     });
+}
 
+if (botonactualizarplato) {
     botonactualizarplato.addEventListener("click", () => {
         // Actualizo un objeto postre con datos inventados fijos
         const plato = {
@@ -573,7 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         actualizarPlato(plato);
     });
-
+}
 
 
     //Página sobre los ingredientes 
@@ -766,7 +783,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             //para crear cada menú escrito, debemos de crear un nnuevo div
             const nuevoMenu = document.createElement("div");
-
+            nuevoMenu.classList.add("menu-creado")
             nuevoMenu.innerHTML = `
                 <h3>Nuevo menú creado</h3>
                 <p><strong>Nombre:</strong> ${document.getElementById("nombre").value}</p>

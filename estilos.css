@@ -72,6 +72,11 @@ main {
     color: #2c1a0e;
     border-bottom: 2px solid #c8702a;
     padding-bottom: 8px;
+    text-shadow:      /*Idea sacada de: https://kinsta.com/es/blog/contorno-texto-css/   */
+    2px 2px 0 white,
+    -1px 1px 0 white,
+    -3px -3px 0 white,
+    2px -2px 0 white;
 }
 
 .seccion h3 {
@@ -157,26 +162,47 @@ li {
     margin: 5px;
 }
 
-/*.contenedor-menu {
-    background-color: white;
-    border: 10px solid #2c1a0e;
-    border-radius: 10px;
-    padding: 20px;
-}*/
-
 .contenedor-menu, .contenedor-ingredientes, form {
     background: url(imagenes/pizarra.jpg);
     border: 15px solid saddlebrown;
     border-radius: 10px;
     padding: 20px;
-    color: white;
+    color: black;
+    text-shadow:      /*Idea sacada de: https://kinsta.com/es/blog/contorno-texto-css/   */
+    2px 2px 0 white,
+    -1px 1px 0 white,
+    -3px -3px 0 white,
+    2px -2px 0 white;
     font-family: Pizarra;
     letter-spacing: 2px;
     font-size: 25px;
 }
 
-/**/
+/*Último párrafo del header de creartumenufavorito.html*/
 .letra-pequeña {
     font-size: 12.5px;
     color:#c8702a;
 }
+
+/*
+.contenedor-formulario {
+    background: url(imagenes/hoja-de-papel.avif);
+}
+
+.menu{
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+flex-direction: column;
+gap: 20px;
+}*/
+
+.menu-creado{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 15px;
+    border: 2px solid #000;
+    background: url(imagenes/hoja-de-papel.avif);
+}
+

@@ -164,18 +164,22 @@ li {
 
 .contenedor-menu, .contenedor-ingredientes, form {
     background: url(imagenes/pizarra.jpg);
-    border: 15px solid saddlebrown;
+    border: 15px solid #573622;
     border-radius: 10px;
     padding: 20px;
-    color: black;
+    color: white;
+    font-family: Pizarra;
+    letter-spacing: 2px;
+    font-size: 25px;
+}
+
+.contenedor-menu h2, .contenido-principal h3{
+    color: black;         /* #DCDCDC;*/
     text-shadow:      /*Idea sacada de: https://kinsta.com/es/blog/contorno-texto-css/   */
     2px 2px 0 white,
     -1px 1px 0 white,
     -3px -3px 0 white,
     2px -2px 0 white;
-    font-family: Pizarra;
-    letter-spacing: 2px;
-    font-size: 25px;
 }
 
 /*Último párrafo del header de creartumenufavorito.html*/
@@ -206,3 +210,18 @@ gap: 20px;
     background: url(imagenes/hoja-de-papel.avif);
 }
 
+/**/
+.contenedor-fotos-ingredientes {
+    font-size: 25px;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    padding: 15px;
+}
+
+.fotos-ingredientes{
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+}

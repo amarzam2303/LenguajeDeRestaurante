@@ -797,5 +797,4 @@ if (botonactualizarplato) {
             nuevomenucreado.appendChild(nuevoMenu);
         });
     }
-
 });

@@ -312,7 +312,7 @@ server.get("/platos", (req, res) => {
 //-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 // APARTADOS DE LOS INGREDIENTES
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-server.post("/ingredientes", (req, res) => {
+server.post("/ingrediente", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
     const { nombre, tipo } = req.body;
 
@@ -338,20 +338,20 @@ server.post("/ingredientes", (req, res) => {
     );
 });
 
-server.put("/ingredientes/:id", (req, res) => {
+server.put("/ingrediente/:nombre", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
-    const id = req.params.id;
-    const { nombre, tipo } = req.body;
+    const nombre = req.params.nombre;
+    const { tipo } = req.body;
 
     const sql = `
         UPDATE Ingrediente
-        SET nombre = ?, tipo = ?
-        WHERE id = ?
+        SET tipo = ?
+        WHERE nombre = ?
     `;
 
     pool_mysql.query(
         sql,
-        [ nombre, tipo, id ],
+        [ tipo, nombre ],
         (error, resultado) => {
             if (error) {
                 console.error("Error en UPDATE:", error);
@@ -363,13 +363,13 @@ server.put("/ingredientes/:id", (req, res) => {
     );
 });
 
-server.delete("/ingredientes/:id", (req, res) => {
+server.delete("/ingrediente/:nombre", (req, res) => {
     // Utilizamos la variable req que contiene toda la información que envía el cliente al servidor
-    const id = req.params.id;
+    const nombre = req.params.nombre;
 
-    const sql = "DELETE FROM Ingrediente WHERE id = ?";
+    const sql = "DELETE FROM Ingrediente WHERE nombre = ?";
 
-    pool_mysql.query(sql, [id], (error) => {
+    pool_mysql.query(sql, [nombre], (error) => {
         if (error) {
             console.error("Error en DELETE:", error);
             return res.status(500).json({ error });

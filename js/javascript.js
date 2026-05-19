@@ -594,9 +594,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 let div = document.createElement("div");
                 div.classList.add("grid-item");
                 div.innerHTML = `
-                    <p><strong>Id:</strong> ${ingrediente.id}</p>
-                    <p><strong>Nombre:</strong> ${ingrediente.nombre}</p>
-                    <p><strong>Tipo:</strong> ${ingrediente.tipo}</p>
+                    <p><strong>Id:</strong> <span>${ingrediente.id}</span></p>
+                    <p><strong>Nombre:</strong> <span>${ingrediente.nombre}</span></p>
+                    <p><strong>Tipo:</strong> <span>${ingrediente.tipo}</span></p>
                 `;
 
                 mensajesalidaingrediente.appendChild(div); // Agrego el div al contenedor de salida
@@ -610,9 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
         
-         const ENDPOINT_SERVER_INSERTAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE, ENDPOINT_SERVER_PUERTO);
-        
-        //console.log(ENDPOINT_SERVER_INSERTAR_INGREDIENTE.href);
+        const ENDPOINT_SERVER_INSERTAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE, ENDPOINT_SERVER_PUERTO);
         
         fetch(ENDPOINT_SERVER_INSERTAR_INGREDIENTE, {
             method: "POST",
@@ -622,10 +620,10 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(ingrediente)
         })
         .then(respuesta_servidor => {
-        if (!respuesta_servidor.ok) {
-            throw new Error("Error al insertar el ingrediente.");
-        }
-        return respuesta_servidor.json();
+            if (!respuesta_servidor.ok) {
+                throw new Error("Error al insertar el ingrediente.");
+            }
+                return respuesta_servidor.json();
         })
         .then(datos => {
             console.log(datos);
@@ -642,10 +640,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
         
-        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.id)}`,
+        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.nombre)}`,
         ENDPOINT_SERVER_PUERTO);
-        
-        //console.log(ENDPOINT_SERVER_ELIMINAR_INGREDIENTES.href);
         
         fetch(ENDPOINT_SERVER_ELIMINAR_INGREDIENTE, {
             method: "DELETE"
@@ -672,10 +668,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const ENDPOINT_SERVER_PUERTO = new URL(ENDPOINT_SERVER);
         ENDPOINT_SERVER_PUERTO.port = PORT;
         
-        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.id)}`,
-         ENDPOINT_SERVER_PUERTO);
-        
-        //console.log(ENDPOINT_SERVER_ELIMINAR_INGREDIENTE.href);
+        const ENDPOINT_SERVER_ELIMINAR_INGREDIENTE = new URL(ENDPOINT_INSERTAR_ELIMINAR_ACTUALIZAR_INGREDIENTE + `/${encodeURIComponent(ingrediente.nombre)}`, 
+        ENDPOINT_SERVER_PUERTO);
         
         fetch(ENDPOINT_SERVER_ELIMINAR_INGREDIENTE, {
             method: "PUT",
@@ -715,8 +709,8 @@ document.addEventListener("DOMContentLoaded", () => {
         botoninsertaringrediente.addEventListener("click", () => {
             // Inserto un objeto ingrediente con datos inventados fijos
             const ingrediente = {
-                nombre: "Garbanzos",
-                tipo: "Carbohidratos/Almidones"
+                nombre: "Tomates",
+                tipo: "Verduras y Frutas"
             };
 
             insertarIngrediente(ingrediente);
@@ -727,8 +721,8 @@ document.addEventListener("DOMContentLoaded", () => {
         botoneliminaringrediente.addEventListener("click", () => {
             // Elimino un objeto ingrediente con datos inventados fijos
             const ingrediente = {
-                nombre: "Garbanzos",
-                tipo: "Carbohidratos/Almidones"
+                nombre: "Tomates",
+                //tipo: "Verduras y Frutas"   elimina el ingrediente buscando únicamente por el nombre.
             };
 
             eliminarIngrediente(ingrediente);
@@ -739,8 +733,8 @@ document.addEventListener("DOMContentLoaded", () => {
         botonactualizaringrediente.addEventListener("click", () => {
             // Actualizo un objeto ingrediente con datos inventados fijos
             const ingrediente = {
-                nombre: "Garbanzos",
-                tipo: "Carbohidratos/Almidones"
+                nombre: "Tomates/Tomates Cherry",
+                tipo: "Verduras y Frutas"
             };
 
             actualizarIngrediente(ingrediente);

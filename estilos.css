@@ -15,10 +15,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: url(imagenes/fondo-elegante.jpg);
 }
 
 /* ── Cabecera ── */
@@ -211,8 +212,11 @@ li {
 
 /* Contenedor que tiene a todas las imágenes extra sobre los ingredientes del restaurante*/
 .contenedor-fotos-ingredientes {
-    font-size: 25px;
+    font-size: 20px;
+    color: #573622;
+    font-weight: bold;
     background-color: white;
+    /* background: url(imagenes/fondo-corcho.jpg); */
     border: 1px solid #c8702a;
     border-radius: 20px;
     margin-bottom: 40px;
@@ -233,6 +237,8 @@ li {
     height: 80%;
     width: 80%;
     border-radius: 10px;
+    border: 1px solid #573622;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 /*Contenedor de la última foto sobre los ingredientes*/
@@ -245,6 +251,8 @@ li {
     height: 45%;
     width: 45%;
     border-radius: 10px;
+    border: 1px solid #573622;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 /*Imagen de los botones*/

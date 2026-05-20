@@ -54,9 +54,9 @@ nav a:hover {
 
 /* ── Contenido principal ── */
 main {
+    flex: 1;
     margin: 30px auto;
     padding: 0 20px;
-    flex: 1;
 }
 
 /* ── Sección del menú ── */
@@ -103,6 +103,7 @@ button {
     margin-left: 5px;
 }
 
+/* ── Efecto hover hacia los botones ── */
 button:hover {
     background: #2c1a0e;
 }
@@ -115,7 +116,7 @@ button:hover {
     border: 1px dashed #c8702a;
     border-radius: 8px;
 }
-
+ /* ── Cuadros donde se escribe la información de los datos ── */
 .formulario input,
 .formulario select {
     padding: 7px;
@@ -136,8 +137,17 @@ button:hover {
     opacity: 0.5;
 }
 
+/* ── Nombre de los menús fuera de servicio ── */
 .fuera-servicio h2 {
     color: #2c1a0e;
+}
+
+/* ── Mapa ── */
+.mapa {
+    width: 100%;
+    height: 350px;
+    border: 0;
+    border-radius: 8px;
 }
 
 /* ── Pie de página ── */
@@ -146,7 +156,7 @@ footer {
     color: #d4b896;
     text-align: center;
     padding: 15px;
-    margin-top: 30px;
+    margin-top: auto;
 }
 
 /*Quitar los puntitos del navegador*/
@@ -155,13 +165,14 @@ li {
     display: inline;
 }
 
-/*El contenedor del menú*/
+/*El contenedor donde se muestran los datos de la BD*/
 .contenedor-grid {
     background: url(imagenes/pizarra.jpg); 
     font-size: 20px;
     margin: 5px;
 }
 
+/*Contenedores principales de index.html, ingredientes.html y creartumenufavorito.html*/
 .contenedor-menu, .contenedor-ingredientes, form {
     background: url(imagenes/pizarra.jpg);
     border: 15px solid #573622;
@@ -173,6 +184,7 @@ li {
     font-size: 25px;
 }
 
+/* cambiar las letras para que se parezcan más a una pizarra */
 .contenedor-menu h2, .contenido-principal h3{
     color: black;         /* #DCDCDC;*/
     text-shadow:      /*Idea sacada de: https://kinsta.com/es/blog/contorno-texto-css/   */
@@ -182,26 +194,13 @@ li {
     2px -2px 0 white;
 }
 
-/*Último párrafo del header de creartumenufavorito.html*/
+/*Último párrafo de la cabecera de creartumenufavorito.html*/
 .letra-pequeña {
     font-size: 12.5px;
     color:#c8702a;
 }
 
-/*
-.contenedor-formulario {
-    background: url(imagenes/hoja-de-papel.avif);
-}
-
-.menu{
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    display: flex;
-flex-direction: column;
-gap: 20px;
-}*/
-
+/*Contenedor del menú creado por el usuario*/
 .menu-creado{
     margin-top: 20px;
     margin-bottom: 40px;
@@ -210,18 +209,55 @@ gap: 20px;
     background: url(imagenes/hoja-de-papel.avif);
 }
 
-/**/
+/* Contenedor que tiene a todas las imágenes extra sobre los ingredientes del restaurante*/
 .contenedor-fotos-ingredientes {
     font-size: 25px;
     background-color: white;
+    border: 1px solid #c8702a;
     border-radius: 20px;
     margin-bottom: 40px;
     margin-top: 40px;
     padding: 15px;
 }
 
-.fotos-ingredientes{
-    height: 200px;
-    width: 200px;
+/*Contenedor de las imágenes sobre los ingredientes*/
+.fotos-ingredientes{    
+    display: grid;
+    grid-template-columns: repeat(2,2fr);
+    text-align: center;
+    gap: 20px;
+}
+
+/*Imágenes sobre los ingredientes*/
+.fotos-ingredientes img{
+    height: 80%;
+    width: 80%;
     border-radius: 10px;
+}
+
+/*Contenedor de la última foto sobre los ingredientes*/
+.ultimafoto{
+    text-align: center;
+}
+
+/*Última foto sobre los ingredientes*/
+.ultimafoto img{
+    height: 45%;
+    width: 45%;
+    border-radius: 10px;
+}
+
+/*Imagen de los botones*/
+.imagen-boton{
+    height: 15px;
+    width: 15px;
+    margin-right: 3px;
+   
+}
+
+/*Como hay imágenes en los botones que son de distinto tamaño, le creamos una clase para ellos*/
+.imagen-boton-especiales{
+    height: 15px;
+    width: 23px;
+    margin-right: 5px;
 }

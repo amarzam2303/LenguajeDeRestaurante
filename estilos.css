@@ -232,10 +232,10 @@ li {
 
 
 /*            EXCLUSIVO DE BIENVENIDA.HTML                 */
-/* Contenedor que tiene la presentación, todas las imágenes extra 
+/* Contenedor que tiene la presentación, el apartado de curso, todas las imágenes extra 
 sobre los ingredientes del restaurante y contenedor
 para acceder a los menús del restaurante */
-.contenedor-fotos-ingredientes, .vermenus, .presentacion {
+.contenedor-fotos-ingredientes, .vermenus, .presentacion, .cursos {
     font-size: 20px;
     color: #573622;
     font-weight: bold;
@@ -304,4 +304,16 @@ para acceder a los menús del restaurante */
 /*Centrar los botones de bienvenida*/
 .boton-entrar{
     text-align: center;
+}
+
+/*Correo*/
+.correo{
+    color: black;
+    font-style: italic;
+}
+
+/*Video primera clase*/
+.videocurso{
+    width: 800px;
+    height: 600px;
 }

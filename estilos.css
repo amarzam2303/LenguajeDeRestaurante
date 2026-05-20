@@ -1,3 +1,4 @@
+/*            PARTES GENERALES DE LA WEB                 */
 /*Idea buscada de: https://lenguajecss.com/css/cargar-tipografias/regla-font-face/  */
 @font-face {
     font-family: 'Pizarra';
@@ -47,6 +48,7 @@ nav a {
     text-decoration: none;
     margin: 0 15px;
     font-size: 15px;
+    font-weight: bold;
 }
 
 nav a:hover {
@@ -69,6 +71,7 @@ main {
     border: 1px solid #ddd;
 }
 
+/* Títulos de la web */
 .seccion h2 {
     color: #2c1a0e;
     border-bottom: 2px solid #c8702a;
@@ -166,7 +169,7 @@ li {
     display: inline;
 }
 
-/*El contenedor donde se muestran los datos de la BD*/
+/*Contenedores donde se muestran los datos de la BD*/
 .contenedor-grid {
     background: url(imagenes/pizarra.jpg); 
     font-size: 20px;
@@ -185,16 +188,7 @@ li {
     font-size: 25px;
 }
 
-/* cambiar las letras para que se parezcan más a una pizarra */
-.contenedor-menu h2, .contenido-principal h3{
-    color: black;         /* #DCDCDC;*/
-    text-shadow:      /*Idea sacada de: https://kinsta.com/es/blog/contorno-texto-css/   */
-    2px 2px 0 white,
-    -1px 1px 0 white,
-    -3px -3px 0 white,
-    2px -2px 0 white;
-}
-
+/*            EXCLUSIVO DE CREARTUMENUFAVORITO.HTML                 */
 /*Último párrafo de la cabecera de creartumenufavorito.html*/
 .letra-pequeña {
     font-size: 12.5px;
@@ -210,52 +204,18 @@ li {
     background: url(imagenes/hoja-de-papel.avif);
 }
 
-/* Contenedor que tiene a todas las imágenes extra sobre los ingredientes del restaurante*/
-.contenedor-fotos-ingredientes {
-    font-size: 20px;
-    color: #573622;
-    font-weight: bold;
-    background-color: white;
-    /* background: url(imagenes/fondo-corcho.jpg); */
-    border: 1px solid #c8702a;
-    border-radius: 20px;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    padding: 15px;
+/*              DETALLES EXTRA DE LA PÁGINA                */
+/* cambiar las letras para que se parezcan más a una pizarra */
+.contenedor-menu h2, .contenido-principal h3{
+    color: black;         /* #DCDCDC;*/
+    text-shadow:      /*Idea sacada de: https://kinsta.com/es/blog/contorno-texto-css/   */
+    2px 2px 0 white,
+    -1px 1px 0 white,
+    -3px -3px 0 white,
+    2px -2px 0 white;
 }
 
-/*Contenedor de las imágenes sobre los ingredientes*/
-.fotos-ingredientes{    
-    display: grid;
-    grid-template-columns: repeat(2,2fr);
-    text-align: center;
-    gap: 20px;
-}
-
-/*Imágenes sobre los ingredientes*/
-.fotos-ingredientes img{
-    height: 80%;
-    width: 80%;
-    border-radius: 10px;
-    border: 1px solid #573622;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-/*Contenedor de la última foto sobre los ingredientes*/
-.ultimafoto{
-    text-align: center;
-}
-
-/*Última foto sobre los ingredientes*/
-.ultimafoto img{
-    height: 45%;
-    width: 45%;
-    border-radius: 10px;
-    border: 1px solid #573622;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-/*Imagen de los botones*/
+/* Imágenes de los botones del menú e ingrediente*/
 .imagen-boton{
     height: 15px;
     width: 15px;
@@ -268,4 +228,80 @@ li {
     height: 15px;
     width: 23px;
     margin-right: 5px;
+}
+
+
+/*            EXCLUSIVO DE BIENVENIDA.HTML                 */
+/* Contenedor que tiene la presentación, todas las imágenes extra 
+sobre los ingredientes del restaurante y contenedor
+para acceder a los menús del restaurante */
+.contenedor-fotos-ingredientes, .vermenus, .presentacion {
+    font-size: 20px;
+    color: #573622;
+    font-weight: bold;
+    background-color: white;
+    /* background: url(imagenes/fondo-corcho.jpg); */
+    border: 1px solid #c8702a;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    padding: 15px;
+}
+
+/*Presentación de los ingredientes*/
+/*Contenedor de las imágenes sobre los ingredientes*/
+.fotos-ingredientes{    
+    display: grid;
+    grid-template-columns: repeat(2,2fr);
+    text-align: center;
+    gap: 20px;
+}
+
+/*Imágenes sobre los ingredientes*/
+.fotos-ingredientes img{
+    height: 90%;
+    width: 90%;
+    border-radius: 10px;
+    border: 1px solid #573622;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/*Contenedor de la última foto sobre los ingredientes*/
+.ultimafoto{
+    text-align: center;
+}
+
+/*Última foto sobre los ingredientes*/
+.ultimafoto img{
+    height: 50%;
+    width: 50%;
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid #573622;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/*Botón para acceder a los menús*/
+.botonedeentrada a, .botonedeentradaingredientres a {
+    color: white;
+    text-decoration: none;
+}
+
+/*Tamaño del botón para acceder a los menús*/
+.botonedeentrada {
+    font-size: 25px;
+    width: 200px;
+    height: 50px;
+}
+
+/*Tamaño del botón para acceder a los ingredientes*/
+.botonedeentradaingredientres {
+    font-size: 25px;
+    width: 250px;
+    height: 50px;
+}
+
+/*Centrar los botones de bienvenida*/
+.boton-entrar{
+    text-align: center;
 }

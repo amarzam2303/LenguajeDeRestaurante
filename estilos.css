@@ -21,6 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     background: url(imagenes/fondo-elegante.jpg);
+    width: 100%;
 }
 
 /* ── Cabecera ── */
@@ -235,7 +236,7 @@ li {
 /* Contenedor que tiene la presentación, el apartado de curso, todas las imágenes extra 
 sobre los ingredientes del restaurante y contenedor
 para acceder a los menús del restaurante */
-.contenedor-fotos-ingredientes, .vermenus, .presentacion, .cursos {
+.vermenus, .presentacion, .cursos {
     font-size: 20px;
     color: #573622;
     font-weight: bold;
@@ -243,12 +244,51 @@ para acceder a los menús del restaurante */
     /* background: url(imagenes/fondo-corcho.jpg); */
     border: 1px solid #c8702a;
     border-radius: 20px;
-    margin-bottom: 40px;
-    margin-top: 40px;
+    margin: 40px;
     padding: 15px;
 }
 
-/*Presentación de los ingredientes*/
+/*Títulos de los contenedores de bienvenida*/
+h1{
+    text-align: center;
+}
+
+/* Segundo párrrafo del contenedor de presentación y el del contenedor sobre el equipo*/
+.inciso{
+    color: #c8702a;
+    font-style: italic;
+}
+
+/*poner los contenedores de presentación y menús uno al lado del otro*/
+.primeraparte{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    background: url(imagenes/pepperoni-pizza.jpg);
+    padding: 2rem;
+}
+
+/*Colocarle un tamaño para que ambas no se pisen entre ellas o se queden muy separadas*/
+.presentacion, .vermenus{
+    width: 90%;
+}
+
+/*Presentación de los ingredientes y la información del equipo*/
+.contenedor-fotos-ingredientes, .equipo{
+    font-size: 20px;
+    color: #573622;
+    font-weight: bold;
+    background-color: white;
+    /* background: url(imagenes/fondo-corcho.jpg); */
+    border: 1px solid #c8702a;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 40px;
+    padding: 15px;
+    width: 50%;
+    padding-left: 50px;
+}
+
 /*Contenedor de las imágenes sobre los ingredientes*/
 .fotos-ingredientes{    
     display: grid;
@@ -281,7 +321,8 @@ para acceder a los menús del restaurante */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/*Botón para acceder a los menús*/
+/*Botnes para acceder a los contenedores de menús e ingredientes*/
+/*Eliminar las líneas de los botones de los contenedores de menús e ingredientes*/
 .botonedeentrada a, .botonedeentradaingredientres a {
     color: white;
     text-decoration: none;
@@ -312,8 +353,25 @@ para acceder a los menús del restaurante */
     font-style: italic;
 }
 
+/*Fotos sobre la comida del restaurante*/
+.contenedor-principal-comida{
+    display: grid;
+    grid-template-columns: repeat(2,2fr);
+    width: 50%;
+    height: 50%;
+}
+
+/*Fotos de los platos*/
+.fotos{
+    border-radius: 5px;
+    border: 2px solid #2c1a0e;
+    
+}
+
 /*Video primera clase*/
 .videocurso{
     width: 800px;
     height: 600px;
 }
+
+

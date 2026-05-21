@@ -1,3 +1,4 @@
+/******************************************************************************************************************/
 /*            PARTES GENERALES DE LA WEB                 */
 /*Idea buscada de: https://lenguajecss.com/css/cargar-tipografias/regla-font-face/  */
 @font-face {
@@ -6,10 +7,6 @@
     font-weight: normal;
     src: url(font/HandyGeorge.ttf);
 }
-
-
-
-
 
 /* ── Estilos generales ── */
 body {
@@ -189,6 +186,7 @@ li {
     font-size: 25px;
 }
 
+/******************************************************************************************************************/
 /*            EXCLUSIVO DE CREARTUMENUFAVORITO.HTML                 */
 /*Último párrafo de la cabecera de creartumenufavorito.html*/
 .letra-pequeña {
@@ -205,6 +203,7 @@ li {
     background: url(imagenes/hoja-de-papel.avif);
 }
 
+/******************************************************************************************************************/
 /*              DETALLES EXTRA DE LA PÁGINA                */
 /* cambiar las letras para que se parezcan más a una pizarra */
 .contenedor-menu h2, .contenido-principal h3{
@@ -231,7 +230,7 @@ li {
     margin-right: 5px;
 }
 
-
+/******************************************************************************************************************/
 /*            EXCLUSIVO DE BIENVENIDA.HTML                 */
 /* Contenedor que tiene la presentación, el apartado de curso, todas las imágenes extra 
 sobre los ingredientes del restaurante y contenedor
@@ -246,6 +245,20 @@ para acceder a los menús del restaurante */
     border-radius: 20px;
     margin: 40px;
     padding: 15px;
+}
+
+/*Logo del local*/
+.logo {
+    animation: efecto_flotar 6s ease-in-out infinite;
+    width: 5%;
+    height: 5%;
+    border-radius: 5px;
+}
+
+/*Efecto flotar del logo*/
+@keyframes efecto_flotar {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-15px) rotateY(10deg); }
 }
 
 /*Títulos de los contenedores de bienvenida*/
@@ -345,6 +358,17 @@ h1{
 /*Centrar los botones de bienvenida*/
 .boton-entrar{
     text-align: center;
+    animation: latir 6s ease-in-out infinite;
+}
+
+/*Efecto para que los botones latan*/
+@keyframes latir {
+    30%, 60% {
+        transform: scale(1.05);
+    }
+    30% {
+        transform: scale(1.05);
+    }
 }
 
 /*Correo*/
